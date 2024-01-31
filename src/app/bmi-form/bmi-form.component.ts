@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { BmiResponse } from '../interfaces/bmi-response';
 import { BmiapiService } from '../services/bmiapi.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-bmi-form',
@@ -15,10 +16,11 @@ export class BmiFormComponent {
     bmi:22.00, 
     diagnosis:"testChange"
   }
-  bmiService: BmiapiService = inject(BmiapiService)
-
+  bmiService: BmiapiService = inject(BmiapiService);
+  host = environment.apiUrl;
   newAlert(){
     console.log(this.bmiService.getBMIResponse())
+    console.log(this.host)
     alert("clicked"+ this.bmiService.getBMIResponse())
     
   }
