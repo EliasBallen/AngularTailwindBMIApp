@@ -10,10 +10,10 @@ export class BmiapiService {
     diagnosis:"Normal"
   }
   getBMIResponse():BmiResponse{
-    /*fetch('https://example.com/', {
+    fetch("", {
       method: 'GET',
       mode: 'no-cors',
-    })*/
+    })
     
     
     return this.bmiResponse
