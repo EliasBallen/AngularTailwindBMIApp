@@ -1,4 +1,4 @@
 export interface BmiResponse {
-    bmi :Number;
-    diagnosis: String;
+    'BMI' :number;
+    diagnosis: string;
 }

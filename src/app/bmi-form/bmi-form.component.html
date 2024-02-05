@@ -1,14 +1,21 @@
 
 
 <section id="formZone" class="
-flex flex-col align-middle justify-center items-center border-2 rounded-md max-w-[80%] mx-auto my-2 p-2 py-4
+flex flex-col align-middle justify-center items-center border-2 rounded-md max-w-[100%] mx-auto my-2 p-2 py-4
+sm:max-w-[80%]
 ">
-    <form action="" class="text-center" >
+    
+<form 
+    [formGroup] = "bmiForm" 
+    action="" 
+    class="text-center" [class.hidden]="this.viewRequest" >
         <div 
         class="flex flex-col gap-y-5 ">
             <div>
                 <label for="kg_input" class="hidden"></label>
-                <input name="kg_input" type="number" placeholder="Enter your weight in kg"
+                <input 
+                formControlName="weight"
+                name="kg_input" type="number" placeholder="Enter your weight in kg"
                 class="px-2 py-2 text-[20px]
                 border-2 rounded-sm
                 border-slate-900
@@ -17,7 +24,9 @@ flex flex-col align-middle justify-center items-center border-2 rounded-md max-w
             </div>            
             <div>
                 <label for="m_input" class="hidden"></label>
-                <input name="m_input" type="number" placeholder="Enter your height in m"
+                <input 
+                formControlName="height"
+                name="m_input" type="number" placeholder="Enter your height in m"
                 class="px-2 py-2 text-[20px] 
                 border-2 rounded-sm
                 border-slate-900
@@ -27,33 +36,25 @@ flex flex-col align-middle justify-center items-center border-2 rounded-md max-w
             </div>
         </div>
 
-        <button type = "submit" 
-        (click)="$event.preventDefault(); newAlert()"
+        <button 
+        [disabled]="!bmiForm.valid"
+        type = "submit" 
+        (click)="$event.preventDefault(); bmiRequestFormSend()"
         class="
         bg-gradient-to-r from-violet-500 to-blue-700
         px-2 py-1 mt-5 rounded-md text-[20px] 
         hover:opacity-70
-        "
-        >OBTAIN BMI</button>
+        disabled:opacity-70
+        " >OBTAIN BMI</button>
 
     </form>
-
-
     
-</section>
+    @if (this.viewRequest && bmiForm.valid && bmiForm.value.weight !=null && bmiForm.value.height !=null) {
+        <app-bmi-consult [weight]="bmiForm.value.weight"[height]="bmiForm.value.height">
+        </app-bmi-consult>        
+    }
+   
 
-<section
-class="
-    py-5
-">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem officia, doloremque voluptate molestias quibusdam delectus, mollitia saepe aperiam atque dolores tempore illum quas unde quam quo labore nobis velit eius.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem officia, doloremque voluptate molestias quibusdam delectus, mollitia saepe aperiam atque dolores tempore illum quas unde quam quo labore nobis velit eius.</p>
 
 </section>
-<section 
-class="
-    py-5
-">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem officia, doloremque voluptate molestias quibusdam delectus, mollitia saepe aperiam atque dolores tempore illum quas unde quam quo labore nobis velit eius.</p>
 
-</section>
